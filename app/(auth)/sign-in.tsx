@@ -18,13 +18,15 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  ScrollView,
   Text as RNText,
+  ScrollView,
   View,
 } from "react-native";
 
 import { Controller, useForm } from "react-hook-form";
 
+import { ErrorDialog } from "@/components/auth/error-dialog";
+import { Input } from "@/components/ui/input";
 import {
   ArrowRight,
   Eye,
@@ -33,8 +35,6 @@ import {
   Mail,
   ShieldCheck,
 } from "lucide-react-native";
-import { Input } from "@/components/ui/input";
-import { ErrorDialog } from "@/components/auth/error-dialog";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SignIn() {
@@ -303,7 +303,7 @@ export default function SignIn() {
               <Button
                 onPress={handleCodeSubmit(onVerifyPress)}
                 disabled={isLoading}
-                className="mt-6 h-14 rounded-2xl bg-brand-blue"
+                className="mt-6 h-14 rounded-2xl bg-brand-blue hover:bg-brand-blue/90 active:bg-brand-blue/80"
               >
                 {isLoading ? (
                   <ActivityIndicator color="white" />
@@ -505,9 +505,10 @@ export default function SignIn() {
               {/* -------------------------------- */}
 
               <Button
+                variant="success"
                 onPress={handleSubmit(onSignInPress)}
                 disabled={isLoading}
-                className="h-14 rounded-2xl bg-brand-blue"
+                className="h-14 rounded-2xl bg-brand-blue hover:bg-brand-blue/90 active:bg-brand-blue/80"
               >
                 {isLoading ? (
                   <ActivityIndicator color="white" />

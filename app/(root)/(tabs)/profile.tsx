@@ -30,8 +30,8 @@ export default function Profile() {
 
       <Text>{user?.emailAddresses[0]?.emailAddress}</Text>
 
-      <Button className={cn("mt-4 bg-primary")} onPress={() => setShowSignOutDialog(true)}>
-        <Text className="">Sign Out</Text>
+      <Button className="bg-brand-blue hover:bg-brand-blue/90 active:bg-brand-blue/80" onPress={() => setShowSignOutDialog(true)}>
+        <Text className="font-semibold text-white">Sign Out</Text>
       </Button>
 
       <ConfirmDialog

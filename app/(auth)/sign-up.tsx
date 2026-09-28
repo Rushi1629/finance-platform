@@ -275,7 +275,7 @@ export default function SignUpScreen() {
               <Button
                 onPress={handleCodeSubmit(onVerifyPress)}
                 disabled={isLoading}
-                className="mt-4 h-14 rounded-2xl bg-brand-blue"
+                className="mt-4 h-14 rounded-2xl bg-brand-blue hover:bg-brand-blue/90 active:bg-brand-blue/80"
               >
                 {isLoading ? (
                   <ActivityIndicator color="white" />
@@ -490,7 +490,7 @@ export default function SignUpScreen() {
               <Button
                 onPress={handleSubmit(onSignUpPress)}
                 disabled={isLoading}
-                className="mt-2 h-14 rounded-2xl bg-brand-blue"
+                className="mt-2 h-14 rounded-2xl bg-brand-blue hover:bg-brand-blue/90 active:bg-brand-blue/80"
               >
                 {isLoading ? (
                   <ActivityIndicator color="white" />

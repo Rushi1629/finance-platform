@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,13 +28,14 @@ export function ErrorDialog({
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>
 
-          <AlertDialogDescription>
-            {message}
-          </AlertDialogDescription>
+          <AlertDialogDescription>{message}</AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
-          <AlertDialogAction className="bg-red-700 active:bg-red-600" onPress={() => onOpenChange(false)}>
+          <AlertDialogAction
+            className="bg-destructive hover:bg-destructive/90 active:bg-destructive/90"
+            onPress={() => onOpenChange(false)}
+          >
             <Text className="text-white bg-transparent">OK</Text>
           </AlertDialogAction>
         </AlertDialogFooter>

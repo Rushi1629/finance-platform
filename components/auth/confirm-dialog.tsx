@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -52,7 +51,10 @@ export function ConfirmDialog({
           </AlertDialogCancel>
 
           <AlertDialogAction
-            className={confirmClassName}
+            className={
+              confirmClassName ??
+              "bg-brand-success hover:bg-brand-success/90 active:bg-brand-success/90"
+            }
             onPress={handleConfirm}
           >
             <Text className="text-white bg-transparent">{confirmText}</Text>

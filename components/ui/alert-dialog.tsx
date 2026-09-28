@@ -31,7 +31,7 @@ function AlertDialogOverlay({
     <FullWindowOverlay>
       <AlertDialogPrimitive.Overlay
         className={cn(
-          "absolute bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/30 p-2",
+          "absolute bottom-0 left-0 right-0 top-0 z-50 flex items-center justify-center bg-black/50 p-2",
           Platform.select({
             web: "animate-in fade-in-0 fixed",
           }),
@@ -66,7 +66,7 @@ function AlertDialogContent({
       <AlertDialogOverlay>
         <AlertDialogPrimitive.Content
           className={cn(
-            "bg-background border-border z-50 flex w-full max-w-[calc(100%-2rem)] flex-col gap-4 rounded-lg border p-6 shadow-lg shadow-black/5 sm:max-w-lg",
+            "bg-white border-[#E5E7EB] z-50 flex w-full max-w-[calc(100%-2rem)] flex-col gap-4 rounded-lg border p-6 shadow-lg shadow-black/5 sm:max-w-lg",
             Platform.select({
               web: "animate-in fade-in-0 zoom-in-95 duration-200",
             }),
@@ -105,7 +105,7 @@ function AlertDialogTitle({
 }: React.ComponentProps<typeof AlertDialogPrimitive.Title>) {
   return (
     <AlertDialogPrimitive.Title
-      className={cn("text-foreground text-lg font-semibold", className)}
+      className={cn("text-[#1A1D26] text-lg font-semibold", className)}
       {...props}
     />
   );
@@ -117,7 +117,7 @@ function AlertDialogDescription({
 }: React.ComponentProps<typeof AlertDialogPrimitive.Description>) {
   return (
     <AlertDialogPrimitive.Description
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-[#68707B] text-sm", className)}
       {...props}
     />
   );
@@ -128,14 +128,9 @@ function AlertDialogAction({
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Action>) {
   return (
-    <TextClassContext.Provider
-      value={buttonTextVariants({
-        variant: "destructive",
-        className,
-      })}
-    >
+    <TextClassContext.Provider value={buttonTextVariants({ className })}>
       <AlertDialogPrimitive.Action
-        className={cn(buttonVariants({ variant: "destructive" }), className)}
+        className={cn(buttonVariants(), className)}
         {...props}
       />
     </TextClassContext.Provider>
@@ -148,10 +143,14 @@ function AlertDialogCancel({
 }: React.ComponentProps<typeof AlertDialogPrimitive.Cancel>) {
   return (
     <TextClassContext.Provider
-      value={buttonTextVariants({ className, variant: "outline" })}
+      value={cn(buttonTextVariants({ variant: "outline" }), "text-[#1A1D26]")}
     >
       <AlertDialogPrimitive.Cancel
-        className={cn(buttonVariants({ variant: "outline" }), className)}
+        className={cn(
+          buttonVariants({ variant: "outline" }),
+          "bg-white border-[#D1D5DB] hover:bg-[#F3F4F6] active:bg-[#E5E7EB]",
+          className,
+        )}
         {...props}
       />
     </TextClassContext.Provider>
@@ -169,5 +168,6 @@ export {
   AlertDialogOverlay,
   AlertDialogPortal,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 };
+
