@@ -5,16 +5,19 @@ import { useAuth, useUser } from "@clerk/expo";
 import { Button } from "@/components/ui/button";
 import { ConfirmDialog } from "@/components/auth/confirm-dialog";
 import { cn } from "@/lib/utils";
+import { useRouter } from "expo-router";
 
 export default function Profile() {
   const { signOut } = useAuth();
   const { user } = useUser();
+  const router = useRouter();
 
   const [showSignOutDialog, setShowSignOutDialog] = React.useState(false);
 
   const handleSignOut = async () => {
     try {
       await signOut();
+      router.replace("/(auth)/sign-in");
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +33,10 @@ export default function Profile() {
 
       <Text>{user?.emailAddresses[0]?.emailAddress}</Text>
 
-      <Button className="bg-brand-blue hover:bg-brand-blue/90 active:bg-brand-blue/80" onPress={() => setShowSignOutDialog(true)}>
+      <Button
+        className="bg-brand-blue hover:bg-brand-blue/90 active:bg-brand-blue/80"
+        onPress={() => setShowSignOutDialog(true)}
+      >
         <Text className="font-semibold text-white">Sign Out</Text>
       </Button>
 
