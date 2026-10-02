@@ -58,7 +58,7 @@ export default function OnboardingScreen() {
       return;
     }
 
-    const startingAmount = Number(startingBalance.replace(/,/g, ""));
+    const startingAmount = parseFloat(startingBalance.replace(/,/g, ""));
     setSaving(true);
     setError("");
 
@@ -68,7 +68,11 @@ export default function OnboardingScreen() {
         .update({ currency: selectedCurrency.code })
         .eq("clerk_id", user.id);
 
-      if (updateError) throw updateError;
+      if (updateError) {
+        setError(updateError.message ?? "Failed to update user currency.");
+        setSaving(false);
+        return;
+      }
 
       const { data: defaultAccount, error: accountFetchError } =
         await authSupabase
@@ -79,7 +83,9 @@ export default function OnboardingScreen() {
           .single();
 
       if (accountFetchError || !defaultAccount) {
-        throw accountFetchError ?? new Error("Default account not found.");
+        setError("Failed to fetch default account.");
+        setSaving(false);
+        return;
       }
 
       const { error: transactionError } = await authSupabase
@@ -95,14 +101,22 @@ export default function OnboardingScreen() {
           input_method: "MANUAL",
         });
 
-      if (transactionError) throw transactionError;
+      if (transactionError) {
+        setError(transactionError.message ?? "Failed to create transaction.");
+        setSaving(false);
+        return;
+      }
 
       const { error: balanceError } = await authSupabase
         .from("accounts")
         .update({ balance: defaultAccount.balance + startingAmount })
         .eq("id", defaultAccount.id);
 
-      if (balanceError) throw balanceError;
+      if (balanceError) {
+        setError(balanceError.message ?? "Failed to update account balance.");
+        setSaving(false);
+        return;
+      }
 
       setCurrency(selectedCurrency.code);
       setNeedsOnboarding(false);
