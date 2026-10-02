@@ -25,6 +25,8 @@
     "@supabase/supabase-js": "^2.117.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "currency-codes": "^2.2.0",
+    "currency-symbol-map": "^5.1.0",
     "expo": "^57.0.25",
     "expo-constants": "~57.0.19",
     "expo-font": "~57.0.4",

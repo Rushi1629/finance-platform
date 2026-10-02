@@ -18,6 +18,7 @@ interface FormFieldProps {
   autoCapitalize?: "none" | "sentences" | "words" | "characters";
   autoComplete?: "off" | "email" | "password";
   maxLength?: number;
+  textAlign?: "left" | "center" | "right";
 }
 
 export function FormField({
@@ -34,16 +35,22 @@ export function FormField({
   autoCapitalize = "none",
   autoComplete = "off",
   maxLength,
+  textAlign = "left",
 }: FormFieldProps) {
   return (
-    <View className="mb-5">
+    <View className="mb-5 w-full">
       <Label className="mb-2 text-[13px] font-semibold text-[#1A1D26]">
         {label}
       </Label>
 
-      <View className="relative">
+      <View className="relative w-full">
         {icon ? (
-          <View className="absolute left-4 top-4 z-10">{icon}</View>
+          <View
+            pointerEvents="none"
+            className="absolute left-4 top-[19px] z-10"
+          >
+            {icon}
+          </View>
         ) : null}
 
         <Input
@@ -57,7 +64,10 @@ export function FormField({
           autoCapitalize={autoCapitalize}
           autoComplete={autoComplete}
           maxLength={maxLength}
-          className={`h-14 rounded-2xl bg-white text-[15px] text-[#1A1D26] ${
+          textAlign={textAlign}
+          textAlignVertical="center"
+          style={{ height: 56, width: "100%", includeFontPadding: false }}
+          className={`h-12 sm:h-12 w-full min-w-0 rounded-2xl bg-white dark:bg-white text-[15px] text-[#1A1D26] ${
             icon ? "pl-12" : "px-4"
           } ${rightIcon ? "pr-12" : ""} ${
             error ? "border-brand-coral" : "border-[#E5E7EB]"
@@ -65,7 +75,7 @@ export function FormField({
         />
 
         {rightIcon ? (
-          <View className="absolute right-4 top-4 z-10">{rightIcon}</View>
+          <View className="absolute right-4 top-[19px] z-10">{rightIcon}</View>
         ) : null}
       </View>
 
