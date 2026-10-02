@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Link, useRouter } from "expo-router";
 
-import React from "react";
+import React, { useState } from "react";
 
 import {
   ActivityIndicator,
@@ -42,8 +42,8 @@ export default function SignIn() {
 
   const router = useRouter();
 
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [errorDialog, setErrorDialog] = React.useState({
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorDialog, setErrorDialog] = useState({
     open: false,
     title: "",
     message: "",
