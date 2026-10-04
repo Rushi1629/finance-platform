@@ -14,7 +14,13 @@ interface FormFieldProps {
   icon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   secureTextEntry?: boolean;
-  keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+  keyboardType?:
+    | "default"
+    | "decimal-pad"
+    | "email-address"
+    | "numeric"
+    | "phone-pad";
+  autoFocus?: boolean;
   autoCapitalize?: "none" | "sentences" | "words" | "characters";
   autoComplete?: "off" | "email" | "password";
   maxLength?: number;
@@ -32,6 +38,7 @@ export function FormField({
   rightIcon,
   secureTextEntry,
   keyboardType = "default",
+  autoFocus,
   autoCapitalize = "none",
   autoComplete = "off",
   maxLength,
@@ -61,6 +68,7 @@ export function FormField({
           placeholderTextColor="#9CA0AA"
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
+          autoFocus={autoFocus}
           autoCapitalize={autoCapitalize}
           autoComplete={autoComplete}
           maxLength={maxLength}

@@ -2,7 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Account, AccountType } from "@/types/account";
 
-// export type { Account, AccountType } from "@/types/accounts";
+export type { Account, AccountType } from "@/types/account";
 
 export async function getAccounts(supabase: SupabaseClient, userId: string) {
   const { data, error } = await supabase
