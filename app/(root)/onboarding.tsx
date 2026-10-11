@@ -9,6 +9,7 @@ import {
   onboardingSchema,
   type OnboardingFormValues,
 } from "@/lib/schemas/onboarding";
+import { completeOnboarding } from "@/lib/services/onboarding";
 import { useUserStore } from "@/store/userStore";
 import { useUser } from "@clerk/expo";
 import { Feather } from "@expo/vector-icons";
@@ -53,75 +54,27 @@ export default function OnboardingScreen() {
   const [error, setError] = useState("");
 
   const handleSave = async ({ startingBalance }: OnboardingFormValues) => {
-    if (!user) {
-      setError("Your session has expired. Please sign in again.");
-      return;
-    }
+    if (!user) return;
 
-    const startingAmount = parseFloat(startingBalance.replace(/,/g, ""));
     setSaving(true);
     setError("");
 
     try {
-      const { error: updateError } = await authSupabase
-        .from("users")
-        .update({ currency: selectedCurrency.code })
-        .eq("clerk_id", user.id);
+      const amount = parseFloat(startingBalance.replace(/,/g, ""));
 
-      if (updateError) {
-        setError(updateError.message ?? "Failed to update user currency.");
-        setSaving(false);
-        return;
-      }
-
-      const { data: defaultAccount, error: accountFetchError } =
-        await authSupabase
-          .from("accounts")
-          .select("id, balance")
-          .eq("user_id", user.id)
-          .eq("is_default", true)
-          .single();
-
-      if (accountFetchError || !defaultAccount) {
-        setError("Failed to fetch default account.");
-        setSaving(false);
-        return;
-      }
-
-      const { error: transactionError } = await authSupabase
-        .from("transactions")
-        .insert({
-          user_id: user.id,
-          account_id: defaultAccount.id,
-          type: "INCOME",
-          amount: startingAmount,
-          category: "other_income",
-          description: "Starting balance",
-          date: new Date().toISOString(),
-          input_method: "MANUAL",
-        });
-
-      if (transactionError) {
-        setError(transactionError.message ?? "Failed to create transaction.");
-        setSaving(false);
-        return;
-      }
-
-      const { error: balanceError } = await authSupabase
-        .from("accounts")
-        .update({ balance: defaultAccount.balance + startingAmount })
-        .eq("id", defaultAccount.id);
-
-      if (balanceError) {
-        setError(balanceError.message ?? "Failed to update account balance.");
-        setSaving(false);
-        return;
-      }
+      await completeOnboarding({
+        supabase: authSupabase,
+        userId: user.id,
+        currency: selectedCurrency.code,
+        startingBalance: amount,
+      });
 
       setCurrency(selectedCurrency.code);
       setNeedsOnboarding(false);
+
       router.replace("/(root)/(tabs)");
-    } catch {
+    } catch (err) {
+      console.error("Onboarding error:", err);
       setError("Something went wrong. Please try again.");
     } finally {
       setSaving(false);

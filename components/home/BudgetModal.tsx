@@ -11,7 +11,7 @@ import { FormField } from "@/components/auth/form-field";
 import { Text as UiText } from "@/components/ui/text";
 import { useUpsertBudget } from "@/hooks/mutations/useBudgetMutations";
 import { useUserStore } from "@/store/userStore";
-import type { Budget } from "@/types/budget";
+import type { Budget, BudgetModalProps } from "@/types/budget";
 import { useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -20,13 +20,6 @@ import {
   Text,
   View,
 } from "react-native";
-
-type BudgetModalProps = {
-  visible: boolean;
-  budget: Budget | null;
-  onClose: () => void;
-  onSaved: () => void;
-};
 
 export function BudgetModal({
   visible,

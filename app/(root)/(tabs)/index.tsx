@@ -1,4 +1,3 @@
-import { BudgetModal } from "@/components/BudgetModal";
 import { ConfirmDialog } from "@/components/auth/confirm-dialog";
 import { ErrorDialog } from "@/components/auth/error-dialog";
 import { Button } from "@/components/ui/button";
@@ -41,6 +40,7 @@ import { PieChart } from "react-native-gifted-charts";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TransactionListItem from "@/components/home/transaction-list-item";
 import DashboardSectionTitle from "@/components/home/DashboardSectionTitle";
+import { BudgetModal } from "@/components/home/BudgetModal";
 
 const QUICK_ACTIONS = [
   {
