@@ -1,5 +1,6 @@
 import type { Budget } from "@/types/budget";
 import type { SupabaseClient } from "@supabase/supabase-js";
+export type { Budget } from "@/types/budget";
 
 export async function getBudget(supabase: SupabaseClient, userId: string) {
   const { data, error } = await supabase
