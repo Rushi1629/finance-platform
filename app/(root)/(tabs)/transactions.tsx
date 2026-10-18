@@ -101,10 +101,7 @@ export default function TransactionsScreen() {
     data: accounts = [],
     isRefetching: accountsRefetching,
     refetch: refetchAccounts,
-  } = useAccountsQuery();
-
-  console.log(accounts,"accounts");
-  
+  } = useAccountsQuery();  
 
   const deleteTransactionMutation = useDeleteTransaction();
 

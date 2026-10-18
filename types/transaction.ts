@@ -46,3 +46,20 @@ export type ExtractedTransaction = {
   date: string | null;
   transcript: string | null;
 };
+
+export type PillOption<T extends string> = {
+  key: T;
+  label: string;
+  icon?: string;
+  detail?: string;
+};
+
+export type PillGroupProps<T extends string> = {
+  options: PillOption<T>[];
+  value: T;
+  onChange: (key: T) => void;
+  scrollable?: boolean;
+  accentColor?: string;
+};
+
+export type RecorderStatus = "idle" | "recording" | "processing" | "error";
