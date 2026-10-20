@@ -233,18 +233,20 @@ export default function SignIn() {
 
               {/* Icon */}
 
-              <View className="mb-6 size-14 items-center justify-center rounded-2xl bg-brand-blue/10">
-                <ShieldCheck size={28} color="#2563EB" strokeWidth={2} />
+              <View className="flex items-center flex-row gap-3">
+                <View className="mb-6 size-14 items-center justify-center rounded-2xl bg-brand-blue/10">
+                  <ShieldCheck size={28} color="#2563EB" strokeWidth={2} />
+                </View>
+
+                {/* Heading */}
+
+                <Text
+                  variant="h1"
+                  className="mb-2 text-3xl font-bold text-[#1A1D26]"
+                >
+                  Verify your account
+                </Text>
               </View>
-
-              {/* Heading */}
-
-              <Text
-                variant="h1"
-                className="mb-2 text-3xl font-bold text-[#1A1D26]"
-              >
-                Verify your account
-              </Text>
 
               <Text className="mb-8 text-base leading-6 text-brand-text-muted">
                 We sent a verification code to your email. Enter it below to

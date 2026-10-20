@@ -215,20 +215,22 @@ export default function SignUpScreen() {
               {/* ICON */}
               {/* -------------------------------- */}
 
-              <View className="mb-6 size-14 items-center justify-center rounded-2xl bg-brand-blue/10">
-                <ShieldCheck size={28} color="#2563EB" strokeWidth={2} />
+              <View className="flex items-center flex-row gap-3">
+                <View className="mb-6 size-14 items-center justify-center rounded-2xl bg-brand-blue/10">
+                  <ShieldCheck size={28} color="#2563EB" strokeWidth={2} />
+                </View>
+
+                {/* -------------------------------- */}
+                {/* HEADING */}
+                {/* -------------------------------- */}
+
+                <Text
+                  variant="h1"
+                  className="mb-2 text-3xl font-bold text-[#1A1D26]"
+                >
+                  Verify your account
+                </Text>
               </View>
-
-              {/* -------------------------------- */}
-              {/* HEADING */}
-              {/* -------------------------------- */}
-
-              <Text
-                variant="h1"
-                className="mb-2 text-3xl font-bold text-[#1A1D26]"
-              >
-                Verify your account
-              </Text>
 
               <RNText className="mb-8 text-base leading-6 text-brand-text-muted">
                 We sent a verification code to {email}. Enter it below to
