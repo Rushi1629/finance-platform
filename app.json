@@ -37,7 +37,7 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/wealth-splash.png",
-          "imageWidth": 300,
+          "imageWidth": 500,
           "resizeMode": "contain",
           "backgroundColor": "#F4F8FF",
           "dark": {
