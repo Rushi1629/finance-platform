@@ -9,7 +9,7 @@ export function CalendarPicker({
   onChange: (date: Date) => void;
   maximumDate?: Date;
 }) {
-  const defaultStyles = useDefaultStyles("dark");
+  const defaultStyles = useDefaultStyles("light");
 
   return (
     <DateTimePicker
@@ -32,16 +32,16 @@ export function CalendarPicker({
       styles={{
         ...defaultStyles,
         header: { backgroundColor: "transparent" },
-        month_selector_label: { color: "#F2EFE9", fontWeight: "600" },
-        year_selector_label: { color: "#F2EFE9", fontWeight: "600" },
-        weekday_label: { color: "#8A8D96" },
-        day_label: { color: "#F2EFE9" },
+        month_selector_label: { color: "#1A1D26", fontWeight: "600" },
+        year_selector_label: { color: "#1A1D26", fontWeight: "600" },
+        weekday_label: { color: "#5C5F68" },
+        day_label: { color: "#1A1D26" },
         selected: { backgroundColor: "#1A85FF" },
         selected_label: { color: "#FFFFFF", fontWeight: "600" },
         today: { borderWidth: 1, borderColor: "#1A85FF" },
-        disabled_label: { color: "#5C5F68" },
-        button_prev_image: { tintColor: "#8A8D96" },
-        button_next_image: { tintColor: "#8A8D96" },
+        disabled_label: { color: "#A7A9AE" },
+        button_prev_image: { tintColor: "#5C5F68" },
+        button_next_image: { tintColor: "#5C5F68" },
       }}
     />
   );

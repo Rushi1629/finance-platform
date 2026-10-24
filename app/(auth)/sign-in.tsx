@@ -26,7 +26,6 @@ import {
 import { Controller, useForm } from "react-hook-form";
 
 import { ErrorDialog } from "@/components/auth/error-dialog";
-import { Input } from "@/components/ui/input";
 import {
   ArrowRight,
   Eye,
@@ -259,46 +258,22 @@ export default function SignIn() {
                 control={codeControl}
                 name="code"
                 render={({ field: { value, onChange, onBlur } }) => (
-                  <View className="mb-2">
-                    <RNText className="mb-2 text-[13px] font-semibold text-[#1A1D26]">
-                      Verification code
-                    </RNText>
-
-                    <View className="relative">
-                      <View className="absolute left-4 top-4 z-10">
-                        <LockKeyhole size={18} color="#9CA0AA" />
-                      </View>
-
-                      <Input
-                        value={value}
-                        onChangeText={onChange}
-                        onBlur={onBlur}
-                        placeholder="Enter verification code"
-                        placeholderTextColor="#9CA0AA"
-                        keyboardType="number-pad"
-                        maxLength={6}
-                        className={`h-14 rounded-2xl bg-white pl-12 text-[15px] text-[#1A1D26] ${
-                          codeErrors.code
-                            ? "border-brand-coral"
-                            : "border-[#E5E7EB]"
-                        }`}
-                      />
-                    </View>
-                  </View>
+                  <FormField
+                    label="Verification code"
+                    placeholder="Enter verification code"
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    keyboardType="numeric"
+                    autoComplete="off"
+                    maxLength={6}
+                    icon={<LockKeyhole size={18} color="#9CA0AA" />}
+                    error={
+                      codeErrors.code?.message || errors.fields.code?.message
+                    }
+                  />
                 )}
               />
-
-              {codeErrors.code ? (
-                <RNText className="mt-1.5 text-xs text-brand-coral">
-                  {codeErrors.code.message}
-                </RNText>
-              ) : null}
-
-              {errors.fields.code ? (
-                <RNText className="mt-1.5 text-xs text-brand-coral">
-                  {errors.fields.code.message}
-                </RNText>
-              ) : null}
 
               {/* Verify */}
 
@@ -426,27 +401,21 @@ export default function SignIn() {
                 control={control}
                 name="email"
                 render={({ field: { value, onChange, onBlur } }) => (
-                  <View className="relative">
-                    <View className="absolute left-4 top-[42px] z-10">
-                      <Mail size={18} color="#9CA0AA" />
-                    </View>
-
-                    <FormField
-                      label="Email address"
-                      placeholder="you@example.com"
-                      value={value}
-                      onChangeText={onChange}
-                      onBlur={onBlur}
-                      keyboardType="email-address"
-                      autoCapitalize="none"
-                      autoComplete="email"
-                      icon={<Mail size={18} color="#9CA0AA" />}
-                      error={
-                        formErrors.email?.message ||
-                        errors.fields.identifier?.message
-                      }
-                    />
-                  </View>
+                  <FormField
+                    label="Email address"
+                    placeholder="you@example.com"
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoComplete="email"
+                    icon={<Mail size={18} color="#9CA0AA" />}
+                    error={
+                      formErrors.email?.message ||
+                      errors.fields.identifier?.message
+                    }
+                  />
                 )}
               />
 
@@ -456,39 +425,33 @@ export default function SignIn() {
                 control={control}
                 name="password"
                 render={({ field: { value, onChange, onBlur } }) => (
-                  <View className="relative">
-                    <View className="absolute left-4 top-[42px] z-10">
-                      <LockKeyhole size={18} color="#9CA0AA" />
-                    </View>
-
-                    <FormField
-                      label="Password"
-                      placeholder="Enter your password"
-                      value={value}
-                      onChangeText={onChange}
-                      onBlur={onBlur}
-                      secureTextEntry={!showPassword}
-                      autoCapitalize="none"
-                      autoComplete="password"
-                      icon={<LockKeyhole size={18} color="#9CA0AA" />}
-                      rightIcon={
-                        <Pressable
-                          onPress={() => setShowPassword((value) => !value)}
-                          hitSlop={10}
-                        >
-                          {showPassword ? (
-                            <EyeOff size={19} color="#6B7280" />
-                          ) : (
-                            <Eye size={19} color="#6B7280" />
-                          )}
-                        </Pressable>
-                      }
-                      error={
-                        formErrors.password?.message ||
-                        errors.fields.password?.message
-                      }
-                    />
-                  </View>
+                  <FormField
+                    label="Password"
+                    placeholder="Enter your password"
+                    value={value}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    secureTextEntry={!showPassword}
+                    autoCapitalize="none"
+                    autoComplete="password"
+                    icon={<LockKeyhole size={18} color="#9CA0AA" />}
+                    rightIcon={
+                      <Pressable
+                        onPress={() => setShowPassword((value) => !value)}
+                        hitSlop={10}
+                      >
+                        {showPassword ? (
+                          <EyeOff size={19} color="#6B7280" />
+                        ) : (
+                          <Eye size={19} color="#6B7280" />
+                        )}
+                      </Pressable>
+                    }
+                    error={
+                      formErrors.password?.message ||
+                      errors.fields.password?.message
+                    }
+                  />
                 )}
               />
 
@@ -544,7 +507,7 @@ export default function SignIn() {
 
             <View className="mt-8 flex-row justify-center">
               <RNText className="text-sm text-brand-text-muted">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
               </RNText>
 
               <Link href="/sign-up">

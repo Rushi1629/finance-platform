@@ -308,7 +308,7 @@ export default function AddTransactionScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-brand-bg" edges={["top"]}>
+    <SafeAreaView className="flex-1 bg-[#F6F5F1]" edges={["top"]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1"
@@ -317,16 +317,16 @@ export default function AddTransactionScreen() {
           <Pressable
             accessibilityLabel="Go back"
             accessibilityRole="button"
-            className="mr-3 h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#141822] active:bg-[#202532]"
+            className="mr-3 h-11 w-11 items-center justify-center rounded-full border border-[#E7E5DE] bg-white active:bg-[#F2F5F9]"
             onPress={goBack}
           >
-            <ArrowLeft color="#F2EFE9" size={20} />
+            <ArrowLeft color="#1A1D26" size={20} />
           </Pressable>
           <View>
-            <Text className="text-xs font-medium uppercase tracking-[2px] text-brand-text-muted">
+            <Text className="text-xs font-medium uppercase tracking-[2px] text-[#8A8D96]">
               Your money, in focus
             </Text>
-            <Text className="mt-1 text-2xl font-semibold text-brand-text-primary">
+            <Text className="mt-1 text-2xl font-semibold text-[#1A1D26]">
               New transaction
             </Text>
           </View>
@@ -335,16 +335,16 @@ export default function AddTransactionScreen() {
         {loadingAccounts ? (
           <View className="flex-1 items-center justify-center">
             <ActivityIndicator color="#1A85FF" />
-            <Text className="mt-3 text-sm text-brand-text-secondary">
+            <Text className="mt-3 text-sm text-[#5C5F68]">
               Getting your accounts ready…
             </Text>
           </View>
         ) : accountsError ? (
           <View className="flex-1 items-center justify-center px-8">
-            <Text className="text-center text-lg font-semibold text-brand-text-primary">
+            <Text className="text-center text-lg font-semibold text-[#1A1D26]">
               Accounts aren&apos;t available
             </Text>
-            <Text className="mt-2 text-center text-sm leading-5 text-brand-text-secondary">
+            <Text className="mt-2 text-center text-sm leading-5 text-[#5C5F68]">
               Check your connection and try loading them again.
             </Text>
             <Pressable
@@ -356,13 +356,13 @@ export default function AddTransactionScreen() {
           </View>
         ) : accounts.length === 0 ? (
           <View className="flex-1 items-center justify-center px-8">
-            <View className="h-14 w-14 items-center justify-center rounded-2xl bg-[#141822]">
-              <WalletCards color="#8A8D96" size={25} />
+            <View className="h-14 w-14 items-center justify-center rounded-2xl bg-white">
+              <WalletCards color="#5C5F68" size={25} />
             </View>
-            <Text className="mt-4 text-center text-lg font-semibold text-brand-text-primary">
+            <Text className="mt-4 text-center text-lg font-semibold text-[#1A1D26]">
               Add an account first
             </Text>
-            <Text className="mt-2 text-center text-sm leading-5 text-brand-text-secondary">
+            <Text className="mt-2 text-center text-sm leading-5 text-[#5C5F68]">
               A transaction needs an account to keep your balances up to date.
             </Text>
           </View>
@@ -396,11 +396,11 @@ export default function AddTransactionScreen() {
               />
             </View>
 
-            <View className="mb-5 flex-row rounded-2xl border border-white/10 bg-[#141822] p-1">
+            <View className="mb-5 flex-row rounded-2xl border border-[#E7E5DE] bg-white p-1">
               {TYPE_OPTIONS.map((option) => {
                 const selected = type === option.key;
                 const selectedStyle =
-                  option.key === "INCOME" ? "bg-[#1E322A]" : "bg-[#382522]";
+                  option.key === "INCOME" ? "bg-[#EAF7EF]" : "bg-[#FFF0EB]";
 
                 return (
                   <Pressable
@@ -427,7 +427,7 @@ export default function AddTransactionScreen() {
                           ? option.key === "INCOME"
                             ? "text-[#3DDC84]"
                             : "text-[#FF947A]"
-                          : "text-brand-text-secondary"
+                          : "text-[#5C5F68]"
                       }`}
                     >
                       {option.label}
@@ -437,13 +437,13 @@ export default function AddTransactionScreen() {
               })}
             </View>
 
-            <View className="mb-6 rounded-[26px] border border-white/10 bg-[#141822] px-5 py-5">
+            <View className="mb-6 rounded-[26px] border border-[#E7E5DE] bg-white px-5 py-5">
               <View className="mb-3 flex-row items-center justify-between">
-                <Text className="text-sm font-medium text-brand-text-secondary">
+                <Text className="text-sm font-medium text-[#5C5F68]">
                   Amount
                 </Text>
-                <View className="rounded-full bg-white/5 px-3 py-1.5">
-                  <Text className="text-xs font-semibold text-brand-text-primary">
+                <View className="rounded-full bg-[#F2F5F9] px-3 py-1.5">
+                  <Text className="text-xs font-semibold text-[#1A1D26]">
                     {currency}
                   </Text>
                 </View>
@@ -461,7 +461,7 @@ export default function AddTransactionScreen() {
                   render={({ field: { value, onChange, onBlur } }) => (
                     <TextInput
                       accessibilityLabel="Transaction amount"
-                      className="min-w-0 flex-1 py-1 text-4xl font-semibold text-brand-text-primary"
+                      className="min-w-0 flex-1 py-1 text-4xl font-semibold text-[#1A1D26]"
                       keyboardType="decimal-pad"
                       onBlur={onBlur}
                       onChangeText={(nextValue) => {
@@ -469,7 +469,7 @@ export default function AddTransactionScreen() {
                         onChange(nextValue);
                       }}
                       placeholder="0"
-                      placeholderTextColor="#5C5F68"
+                      placeholderTextColor="#8A8D96"
                       returnKeyType="done"
                       value={value}
                     />
@@ -481,7 +481,7 @@ export default function AddTransactionScreen() {
                   {errors.amount.message}
                 </Text>
               ) : (
-                <Text className="mt-2 text-xs text-brand-text-muted">
+                <Text className="mt-2 text-xs text-[#8A8D96]">
                   Enter the total amount for this transaction
                 </Text>
               )}
@@ -490,10 +490,10 @@ export default function AddTransactionScreen() {
             <View className="mb-6">
               <View className="mb-3 flex-row items-end justify-between">
                 <View>
-                  <Text className="text-base font-semibold text-brand-text-primary">
+                  <Text className="text-base font-semibold text-[#1A1D26]">
                     Category
                   </Text>
-                  <Text className="mt-1 text-xs text-brand-text-secondary">
+                  <Text className="mt-1 text-xs text-[#5C5F68]">
                     Choose where it belongs
                   </Text>
                 </View>
@@ -522,10 +522,10 @@ export default function AddTransactionScreen() {
 
             <View className="mb-6">
               <View className="mb-3">
-                <Text className="text-base font-semibold text-brand-text-primary">
+                <Text className="text-base font-semibold text-[#1A1D26]">
                   Account
                 </Text>
-                <Text className="mt-1 text-xs text-brand-text-secondary">
+                <Text className="mt-1 text-xs text-[#5C5F68]">
                   Select the account used
                 </Text>
               </View>
@@ -550,33 +550,33 @@ export default function AddTransactionScreen() {
             </View>
 
             <View className="mb-5">
-              <Text className="mb-3 text-base font-semibold text-brand-text-primary">
+              <Text className="mb-3 text-base font-semibold text-[#1A1D26]">
                 Date
               </Text>
               <Pressable
                 accessibilityRole="button"
                 accessibilityState={{ expanded: calendarOpen }}
-                className="flex-row items-center justify-between rounded-2xl border border-white/10 bg-[#141822] px-4 py-4 active:bg-[#202532]"
+                className="flex-row items-center justify-between rounded-2xl border border-[#E7E5DE] bg-white px-4 py-4 active:bg-[#F2F5F9]"
                 onPress={() => setCalendarOpen((open) => !open)}
               >
                 <View className="flex-row items-center">
-                  <View className="mr-3 h-10 w-10 items-center justify-center rounded-xl bg-[#1A85FF]/15">
-                    <CalendarDays color="#70AFFF" size={19} />
+                  <View className="mr-3 h-10 w-10 items-center justify-center rounded-xl bg-[#1A85FF]/10">
+                    <CalendarDays color="#1A85FF" size={19} />
                   </View>
                   <View>
-                    <Text className="text-sm font-semibold text-brand-text-primary">
+                    <Text className="text-sm font-semibold text-[#1A1D26]">
                       {format(date, "EEEE, d MMMM yyyy")}
                     </Text>
-                    <Text className="mt-1 text-xs text-brand-text-secondary">
+                    <Text className="mt-1 text-xs text-[#5C5F68]">
                       Transaction date
                     </Text>
                   </View>
                 </View>
-                <ChevronRight color="#8A8D96" size={18} />
+                <ChevronRight color="#5C5F68" size={18} />
               </Pressable>
 
               {calendarOpen ? (
-                <View className="mt-3 rounded-2xl border border-white/10 bg-[#141822] p-4">
+                <View className="mt-3 rounded-2xl border border-[#E7E5DE] bg-white p-4">
                   <CalendarPicker
                     value={date}
                     maximumDate={new Date()}
@@ -590,9 +590,9 @@ export default function AddTransactionScreen() {
             </View>
 
             <View className="mb-5">
-              <Text className="mb-3 text-base font-semibold text-brand-text-primary">
+              <Text className="mb-3 text-base font-semibold text-[#1A1D26]">
                 Note{" "}
-                <Text className="font-normal text-brand-text-muted">
+                <Text className="font-normal text-[#8A8D96]">
                   · Optional
                 </Text>
               </Text>
@@ -601,11 +601,11 @@ export default function AddTransactionScreen() {
                 name="description"
                 render={({ field: { value, onChange, onBlur } }) => (
                   <TextInput
-                    className="rounded-2xl border border-white/10 bg-[#141822] px-4 py-4 text-sm text-brand-text-primary"
+                    className="rounded-2xl border border-[#E7E5DE] bg-white px-4 py-4 text-sm text-[#1A1D26]"
                     onBlur={onBlur}
                     onChangeText={onChange}
                     placeholder="What was this transaction for?"
-                    placeholderTextColor="#5C5F68"
+                    placeholderTextColor="#8A8D96"
                     returnKeyType="done"
                     value={value}
                   />
@@ -624,9 +624,9 @@ export default function AddTransactionScreen() {
               }}
             >
               {saving ? (
-                <ActivityIndicator color="#0B0E14" />
+                <ActivityIndicator color="#1A1D26" />
               ) : (
-                <Text className="text-base font-bold text-[#0B0E14]">
+                <Text className="text-base font-bold text-[#1A1D26]">
                   Save {type === "INCOME" ? "income" : "expense"}
                 </Text>
               )}
@@ -639,7 +639,7 @@ export default function AddTransactionScreen() {
         <View className="absolute inset-0 items-center justify-center bg-black/50">
           <View className="items-center rounded-2xl bg-[#141822] px-6 py-5">
             <ActivityIndicator color="#1A85FF" />
-            <Text className="mt-3 text-sm text-brand-text-primary">
+            <Text className="mt-3 text-sm text-[#1A1D26]">
               Reading receipt…
             </Text>
           </View>

@@ -101,7 +101,7 @@ export default function TransactionsScreen() {
     data: accounts = [],
     isRefetching: accountsRefetching,
     refetch: refetchAccounts,
-  } = useAccountsQuery();  
+  } = useAccountsQuery();
 
   const deleteTransactionMutation = useDeleteTransaction();
 
@@ -296,48 +296,93 @@ export default function TransactionsScreen() {
                   {format(new Date(), "MMMM yyyy")}
                 </Text>
               </View>
-              <View className="rounded-full bg-[#202A32] px-2.5 py-1">
-                <Text className="text-[10px] font-medium text-[#AEB7C5]">
-                  {monthlyTransactions.length}{" "}
-                  {monthlyTransactions.length === 1
-                    ? "transaction"
-                    : "transactions"}
+
+              {chartTransactionsLoading ? (
+                <ActivityIndicator size="small" color="#55D99B" />
+              ) : (
+                <View className="rounded-full bg-[#202A32] px-2.5 py-1">
+                  <Text className="text-[10px] font-medium text-[#AEB7C5]">
+                    {monthlyTransactions.length}{" "}
+                    {monthlyTransactions.length === 1
+                      ? "transaction"
+                      : "transactions"}
+                  </Text>
+                </View>
+              )}
+            </View>
+
+            {chartTransactionsLoading ? (
+              <View className="my-5 items-center justify-center py-3">
+                <ActivityIndicator size="large" color="#55D99B" />
+                <Text className="mt-3 text-xs text-[#9CA3B2]">
+                  Loading monthly summary...
                 </Text>
               </View>
-            </View>
-            <Text className="mb-4 mt-2 text-[30px] font-semibold tracking-tight text-white">
-              {formatPrice(monthlyExpenses, currency)}
-            </Text>
-            <View className="flex-row gap-3">
-              <View className="flex-1 flex-row items-center gap-2 rounded-2xl bg-[#1B2723] px-3 py-2.5">
-                <View className="h-8 w-8 items-center justify-center rounded-full bg-[#254335]">
-                  <Feather name="arrow-down-left" size={16} color="#55D99B" />
-                </View>
-                <View className="min-w-0 flex-1">
-                  <Text className="text-[10px] text-[#94A39B]">Income</Text>
-                  <Text
-                    numberOfLines={1}
-                    className="mt-0.5 text-xs font-semibold text-[#73DDA9]"
-                  >
-                    {formatPrice(monthlyIncome, currency)}
+            ) : chartTransactionsError ? (
+              <View className="my-5 items-center py-3">
+                <Text className="text-xs text-[#FF947A]">
+                  Couldn’t load monthly summary.
+                </Text>
+                <TouchableOpacity
+                  onPress={() => void refetchChartTransactions()}
+                  className="mt-2 rounded-lg bg-[#202A32] px-3 py-2"
+                >
+                  <Text className="text-xs font-semibold text-white">
+                    Try again
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
-              <View className="flex-1 flex-row items-center gap-2 rounded-2xl bg-[#2D2222] px-3 py-2.5">
-                <View className="h-8 w-8 items-center justify-center rounded-full bg-[#49302E]">
-                  <Feather name="arrow-up-right" size={16} color="#FF947A" />
+            ) : (
+              <>
+                <Text className="mb-4 mt-2 text-[30px] font-semibold tracking-tight text-white">
+                  {formatPrice(monthlyExpenses, currency)}
+                </Text>
+
+                <View className="flex-row gap-3">
+                  <View className="flex-1 flex-row items-center gap-2 rounded-2xl bg-[#1B2723] px-3 py-2.5">
+                    <View className="h-8 w-8 items-center justify-center rounded-full bg-[#254335]">
+                      <Feather
+                        name="arrow-down-left"
+                        size={16}
+                        color="#55D99B"
+                      />
+                    </View>
+
+                    <View className="min-w-0 flex-1">
+                      <Text className="text-[10px] text-[#94A39B]">Income</Text>
+                      <Text
+                        numberOfLines={1}
+                        className="mt-0.5 text-xs font-semibold text-[#73DDA9]"
+                      >
+                        {formatPrice(monthlyIncome, currency)}
+                      </Text>
+                    </View>
+                  </View>
+
+                  <View className="flex-1 flex-row items-center gap-2 rounded-2xl bg-[#2D2222] px-3 py-2.5">
+                    <View className="h-8 w-8 items-center justify-center rounded-full bg-[#49302E]">
+                      <Feather
+                        name="arrow-up-right"
+                        size={16}
+                        color="#FF947A"
+                      />
+                    </View>
+
+                    <View className="min-w-0 flex-1">
+                      <Text className="text-[10px] text-[#B19A96]">
+                        Expenses
+                      </Text>
+                      <Text
+                        numberOfLines={1}
+                        className="mt-0.5 text-xs font-semibold text-[#FFA18A]"
+                      >
+                        {formatPrice(monthlyExpenses, currency)}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
-                <View className="min-w-0 flex-1">
-                  <Text className="text-[10px] text-[#B19A96]">Expenses</Text>
-                  <Text
-                    numberOfLines={1}
-                    className="mt-0.5 text-xs font-semibold text-[#FFA18A]"
-                  >
-                    {formatPrice(monthlyExpenses, currency)}
-                  </Text>
-                </View>
-              </View>
-            </View>
+              </>
+            )}
           </View>
         </View>
 

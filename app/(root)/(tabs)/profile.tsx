@@ -42,10 +42,10 @@ function SectionHeading({
 }) {
   return (
     <View className="mb-3 mt-7">
-      <Text className="text-base font-semibold text-brand-text-primary">
+      <Text className="text-base font-semibold text-[#1A1D26]">
         {title}
       </Text>
-      <Text className="mt-1 text-xs text-brand-text-secondary">{subtitle}</Text>
+      <Text className="mt-1 text-xs text-[#5C5F68]">{subtitle}</Text>
     </View>
   );
 }
@@ -69,22 +69,22 @@ function ProfileRow({
     <>
       <View
         className={`mr-3 h-10 w-10 items-center justify-center rounded-xl ${
-          danger ? "bg-brand-coral/10" : "bg-[#202532]"
+          danger ? "bg-brand-coral/10" : "bg-[#1A85FF]/10"
         }`}
       >
-        <Feather name={icon} size={17} color={danger ? "#FF6B4A" : "#70AFFF"} />
+        <Feather name={icon} size={17} color={danger ? "#FF6B4A" : "#1A85FF"} />
       </View>
       <View className="min-w-0 flex-1">
         <Text
           className={`text-sm font-medium ${
-            danger ? "text-brand-coral" : "text-brand-text-primary"
+            danger ? "text-brand-coral"             : "text-[#1A1D26]"
           }`}
         >
           {title}
         </Text>
         {detail ? (
           <Text
-            className="mt-1 text-xs text-brand-text-secondary"
+            className="mt-1 text-xs text-[#5C5F68]"
             numberOfLines={1}
           >
             {detail}
@@ -92,12 +92,12 @@ function ProfileRow({
         ) : null}
       </View>
       {trailing ? (
-        <Text className="mr-2 text-xs font-medium text-brand-text-secondary">
+        <Text className="mr-2 text-xs font-medium text-[#5C5F68]">
           {trailing}
         </Text>
       ) : null}
       {onPress ? (
-        <Feather name="chevron-right" size={17} color="#5C5F68" />
+        <Feather name="chevron-right" size={17} color="#8A8D96" />
       ) : null}
     </>
   );
@@ -113,7 +113,7 @@ function ProfileRow({
   return (
     <Pressable
       accessibilityRole="button"
-      className="min-h-[68px] flex-row items-center px-4 py-3 active:bg-white/5"
+      className="min-h-[68px] flex-row items-center px-4 py-3 active:bg-[#F2F5F9]"
       onPress={onPress}
     >
       {content}
@@ -135,15 +135,15 @@ function AccountCard({
       accessibilityRole="button"
       accessibilityLabel={`Edit ${account.name} account`}
       onPress={onPress}
-      className="mb-2.5 flex-row items-center rounded-2xl border border-brand-surface-border bg-brand-surface px-4 py-4 active:bg-[#1B202B]"
+      className="mb-2.5 flex-row items-center rounded-2xl border border-[#E7E5DE] bg-white px-4 py-4 active:bg-[#F2F5F9]"
     >
       <View className="mr-3 h-11 w-11 items-center justify-center rounded-xl bg-brand-blue/15">
-        <Feather name={ACCOUNT_ICON[account.type]} size={19} color="#70AFFF" />
+        <Feather name={ACCOUNT_ICON[account.type]} size={19} color="#1A85FF" />
       </View>
       <View className="min-w-0 flex-1">
         <View className="flex-row items-center gap-2">
           <Text
-            className="shrink text-sm font-semibold text-brand-text-primary"
+            className="shrink text-sm font-semibold text-[#1A1D26]"
             numberOfLines={1}
           >
             {account.name}
@@ -156,11 +156,11 @@ function AccountCard({
             </View>
           ) : null}
         </View>
-        <Text className="mt-1 text-xs text-brand-text-secondary">
+        <Text className="mt-1 text-xs text-[#5C5F68]">
           {formatPrice(account.balance, currency)}
         </Text>
       </View>
-      <Feather name="chevron-right" size={17} color="#5C5F68" />
+      <Feather name="chevron-right" size={17} color="#8A8D96" />
     </Pressable>
   );
 }
@@ -302,7 +302,7 @@ export default function ProfileScreen() {
   const email = user?.emailAddresses?.[0]?.emailAddress ?? "No email address";
 
   return (
-    <SafeAreaView className="flex-1 bg-brand-bg" edges={["top"]}>
+    <SafeAreaView className="flex-1 bg-[#F6F5F1]" edges={["top"]}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 110 }}
@@ -312,27 +312,27 @@ export default function ProfileScreen() {
             <Text className="text-xs font-semibold uppercase tracking-[2px] text-brand-blue">
               YOUR MONEY, IN FOCUS
             </Text>
-            <Text className="mt-1 text-2xl font-bold text-brand-text-primary">
+            <Text className="mt-1 text-2xl font-bold text-[#1A1D26]">
               Profile
             </Text>
           </View>
-          <View className="h-11 w-11 items-center justify-center rounded-2xl border border-brand-surface-border bg-brand-surface">
-            <Feather name="settings" size={19} color="#8A8D96" />
+          <View className="h-11 w-11 items-center justify-center rounded-2xl border border-[#E7E5DE] bg-white">
+            <Feather name="settings" size={19} color="#5C5F68" />
           </View>
         </View>
 
-        <View className="overflow-hidden rounded-3xl border border-brand-surface-border bg-brand-surface p-5">
+        <View className="overflow-hidden rounded-3xl border border-[#E7E5DE] bg-white p-5">
           <View className="flex-row items-center">
             <Pressable
               accessibilityRole="button"
               accessibilityLabel="Change profile photo"
               accessibilityState={{ disabled: uploadingAvatar }}
-              className="mr-4 h-[76px] w-[76px] items-center justify-center overflow-hidden rounded-full border-2 border-brand-blue bg-[#202532]"
+              className="mr-4 h-[76px] w-[76px] items-center justify-center overflow-hidden rounded-full border-2 border-brand-blue bg-[#F2F5F9]"
               disabled={uploadingAvatar}
               onPress={() => void handlePickAvatar()}
             >
               {uploadingAvatar ? (
-                <ActivityIndicator color="#70AFFF" />
+                <ActivityIndicator color="#1A85FF" />
               ) : user?.imageUrl && user.hasImage ? (
                 <Image
                   source={{ uri: user.imageUrl }}
@@ -340,7 +340,7 @@ export default function ProfileScreen() {
                   contentFit="cover"
                 />
               ) : (
-                <Feather name="user" size={30} color="#8A8D96" />
+                <Feather name="user" size={30} color="#5C5F68" />
               )}
               {!uploadingAvatar ? (
                 <View className="absolute bottom-0 h-6 w-full items-center justify-center bg-black/60">
@@ -350,13 +350,13 @@ export default function ProfileScreen() {
             </Pressable>
             <View className="min-w-0 flex-1">
               <Text
-                className="text-lg font-bold text-brand-text-primary"
+                className="text-lg font-bold text-[#1A1D26]"
                 numberOfLines={1}
               >
                 {displayName}
               </Text>
               <Text
-                className="mt-1 text-xs text-brand-text-secondary"
+                className="mt-1 text-xs text-[#5C5F68]"
                 numberOfLines={1}
               >
                 {email}
@@ -375,23 +375,23 @@ export default function ProfileScreen() {
           subtitle="Manage the places your money lives"
         />
         {loadingAccounts ? (
-          <View className="items-center rounded-2xl border border-brand-surface-border bg-brand-surface py-7">
-            <ActivityIndicator color="#70AFFF" />
-            <Text className="mt-3 text-xs text-brand-text-secondary">
+          <View className="items-center rounded-2xl border border-[#E7E5DE] bg-white py-7">
+            <ActivityIndicator color="#1A85FF" />
+            <Text className="mt-3 text-xs text-[#5C5F68]">
               Loading accounts…
             </Text>
           </View>
         ) : accountsError ? (
-          <View className="items-center rounded-2xl border border-brand-surface-border bg-brand-surface px-5 py-6">
-            <Text className="text-center text-sm text-brand-text-secondary">
+          <View className="items-center rounded-2xl border border-[#E7E5DE] bg-white px-5 py-6">
+            <Text className="text-center text-sm text-[#5C5F68]">
               Couldn&apos;t load your accounts.
             </Text>
             <Button
               variant="outline"
-              className="mt-4 rounded-xl border-brand-surface-border bg-[#202532]"
+              className="mt-4 rounded-xl border-[#E7E5DE] bg-[#F2F5F9]"
               onPress={() => void refetchAccounts()}
             >
-              <Text className="text-sm font-semibold text-brand-text-primary">
+              <Text className="text-sm font-semibold text-[#1A1D26]">
                 Try again
               </Text>
             </Button>
@@ -408,11 +408,11 @@ export default function ProfileScreen() {
                 />
               ))
             ) : (
-              <View className="rounded-2xl border border-brand-surface-border bg-brand-surface px-4 py-5">
-                <Text className="text-sm font-medium text-brand-text-primary">
+              <View className="rounded-2xl border border-[#E7E5DE] bg-white px-4 py-5">
+                <Text className="text-sm font-medium text-[#1A1D26]">
                   No accounts yet
                 </Text>
-                <Text className="mt-1 text-xs leading-5 text-brand-text-secondary">
+                <Text className="mt-1 text-xs leading-5 text-[#5C5F68]">
                   Add an account to start tracking your transactions.
                 </Text>
               </View>
@@ -422,7 +422,7 @@ export default function ProfileScreen() {
               className="h-12 flex-row rounded-2xl border-dashed border-brand-blue/50 bg-brand-blue/5 active:bg-brand-blue/10"
               onPress={() => openAccountModal(null)}
             >
-              <Feather name="plus" size={17} color="#70AFFF" />
+              <Feather name="plus" size={17} color="#1A85FF" />
               <Text className="text-sm font-semibold text-brand-blue">
                 Add account
               </Text>
@@ -434,7 +434,7 @@ export default function ProfileScreen() {
           title="Preferences"
           subtitle="Personalize your finance experience"
         />
-        <View className="overflow-hidden rounded-2xl border border-brand-surface-border bg-brand-surface">
+        <View className="overflow-hidden rounded-2xl border border-[#E7E5DE] bg-white">
           <ProfileRow
             icon="globe"
             title="Currency"
@@ -442,7 +442,7 @@ export default function ProfileScreen() {
             trailing={currency}
             onPress={() => setCurrencyPickerOpen(true)}
           />
-          <View className="mx-4 h-px bg-brand-surface-border" />
+          <View className="mx-4 h-px bg-[#E7E5DE]" />
           <ProfileRow
             icon="lock"
             title="Biometric lock"
@@ -455,7 +455,7 @@ export default function ProfileScreen() {
           title="Account"
           subtitle="Manage your signed-in session"
         />
-        <View className="overflow-hidden rounded-2xl border border-brand-surface-border bg-brand-surface">
+        <View className="overflow-hidden rounded-2xl border border-[#E7E5DE] bg-white">
           <ProfileRow
             icon="log-out"
             title="Sign out"

@@ -9,7 +9,7 @@ export default function TabLayout() {
   if (useNativeTabs) {
     return (
       <NativeTabs
-        backgroundColor="#0B0E14"
+        backgroundColor="#FFFFFF"
         tintColor="#4A9EFF"
         iconColor={{ default: "#5C5F68", selected: "#4A9EFF" }}
         labelStyle={{

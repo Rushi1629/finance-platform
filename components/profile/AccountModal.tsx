@@ -1,7 +1,12 @@
 import { ConfirmDialog } from "@/components/auth/confirm-dialog";
 import { ErrorDialog } from "@/components/auth/error-dialog";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Text } from "@/components/ui/text";
 import {
@@ -133,12 +138,12 @@ export function AccountModal({
           if (!open) onClose();
         }}
       >
-        <DialogContent className="w-full max-w-[calc(100%-2rem)] gap-5 rounded-3xl border-[#232838] bg-[#141822] p-6">
+        <DialogContent className="w-full max-w-[calc(100%-2rem)] gap-5 rounded-3xl border-[#E7E5DE] bg-white p-6">
           <View className="gap-2 pr-8">
-            <DialogTitle className="text-xl font-bold text-brand-text-primary">
+            <DialogTitle className="text-xl font-bold text-[#1A1D26]">
               {account ? "Account details" : "Add account"}
             </DialogTitle>
-            <DialogDescription className="text-sm leading-5 text-brand-text-secondary">
+            <DialogDescription className="text-sm leading-5 text-[#5C5F68]">
               {account
                 ? "Update the account name or type."
                 : "Add an account to keep your finances organized."}
@@ -146,7 +151,7 @@ export function AccountModal({
           </View>
 
           <View className="gap-2">
-            <Text className="text-sm font-medium text-brand-text-primary">
+            <Text className="text-sm font-medium text-black">
               Account name
             </Text>
             <Input
@@ -156,12 +161,12 @@ export function AccountModal({
               placeholder="e.g. Everyday checking"
               placeholderTextColor="#5C5F68"
               value={name}
-              className="h-12 rounded-xl border-[#303647] bg-[#0B0E14] text-brand-text-primary"
+              className="h-12 rounded-xl border-[#5d6371] bg-white text-[#1A1D26] dark:bg-white dark:text-black"
             />
           </View>
 
           <View className="gap-2">
-            <Text className="text-sm font-medium text-brand-text-primary">
+            <Text className="text-sm font-medium text-[#1A1D26]">
               Account type
             </Text>
             <View className="flex-row flex-wrap gap-2">
@@ -176,19 +181,17 @@ export function AccountModal({
                     className={`min-h-10 flex-row items-center gap-2 rounded-xl border px-3 ${
                       selected
                         ? "border-brand-blue bg-brand-blue/15"
-                        : "border-[#303647] bg-[#0B0E14]"
+                        : "border-[#E7E5DE] bg-[#F6F5F1]"
                     }`}
                   >
                     <Feather
                       name={option.icon}
                       size={14}
-                      color={selected ? "#70AFFF" : "#8A8D96"}
+                      color={selected ? "#1A85FF" : "#5C5F68"}
                     />
                     <Text
                       className={`text-xs font-medium ${
-                        selected
-                          ? "text-brand-text-primary"
-                          : "text-brand-text-secondary"
+                        selected ? "text-[#1A1D26]" : "text-[#5C5F68]"
                       }`}
                     >
                       {option.label}
@@ -216,26 +219,37 @@ export function AccountModal({
             {account ? (
               <View className="flex-row gap-2">
                 <Button
-                  className="flex-1 rounded-xl border border-[#303647] bg-[#0B0E14] active:bg-[#202532]"
+                  className={`flex-1 rounded-xl border ${
+                    account.is_default
+                      ? "border-[#B8E3C7] bg-[#E8F7EE] dark:border-[#B8E3C7] dark:bg-[#E8F7EE]"
+                      : "border-[#B8E3C7] bg-[#E8F7EE] dark:border-[#B8E3C7] dark:bg-[#E8F7EE] active:bg-[#D5F0DF] dark:active:bg-[#D5F0DF]"
+                  }`}
                   disabled={
-                    account.is_default ||
-                    saving ||
-                    deleting ||
-                    updatingDefault
+                    account.is_default || saving || deleting || updatingDefault
                   }
                   onPress={() => void handleSetDefault()}
                   variant="outline"
                 >
                   {updatingDefault ? (
-                    <ActivityIndicator color="#70AFFF" />
+                    <ActivityIndicator color="#18864B" />
                   ) : (
-                    <Text className="text-xs font-semibold text-brand-text-primary">
+                    <Text
+                      className={`text-xs font-semibold ${
+                        account.is_default
+                          ? "text-[#18864B] dark:text-[#18864B] hover:text-[#18864B]"
+                          : "text-[#18864B] dark:text-[#18864B] hover:text-[#18864B]"
+                      }`}
+                    >
                       {account.is_default ? "Default account" : "Make default"}
                     </Text>
                   )}
                 </Button>
                 <Button
-                  className="flex-1 rounded-xl border border-brand-coral/40 bg-brand-coral/10 active:bg-brand-coral/20"
+                  className={`flex-1 rounded-xl border ${
+                    account.is_default
+                      ? "border-[#F3C4B8] bg-[#FFF0EC] dark:border-[#F3C4B8] dark:bg-[#FFF0EC]"
+                      : "border-[#F3C4B8] bg-[#FFF0EC] dark:border-[#F3C4B8] dark:bg-[#FFF0EC] active:bg-[#FBE0D9] dark:active:bg-[#FBE0D9]"
+                  }`}
                   disabled={
                     account.is_default || saving || deleting || updatingDefault
                   }
@@ -243,10 +257,10 @@ export function AccountModal({
                   variant="outline"
                 >
                   {deleting ? (
-                    <ActivityIndicator color="#FF6B4A" />
+                    <ActivityIndicator color="#C8462A" />
                   ) : (
-                    <Text className="text-xs font-semibold text-brand-coral">
-                      {account.is_default ? "Set another default first" : "Delete"}
+                    <Text className="text-xs font-semibold text-[#C8462A]">
+                      {account.is_default ? "Set Another Default" : "Delete"}
                     </Text>
                   )}
                 </Button>

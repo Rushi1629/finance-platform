@@ -57,17 +57,21 @@ function MessageBubble({ message }: { message: ChatMessage }) {
     >
       {!isUser ? (
         <View className="mb-1 h-7 w-7 items-center justify-center rounded-full bg-brand-blue/15">
-          <Feather name="zap" size={13} color="#70AFFF" />
+          <Feather name="zap" size={13} color="#1A85FF" />
         </View>
       ) : null}
       <View
         className={`rounded-2xl px-4 py-3 ${
           isUser
             ? "rounded-br-md bg-brand-blue"
-            : "rounded-bl-md border border-brand-surface-border bg-brand-surface"
+            : "rounded-bl-md border border-[#E7E5DE] bg-white"
         }`}
       >
-        <Text className="text-sm leading-5 text-brand-text-primary">
+        <Text
+          className={`text-sm leading-5 ${
+            isUser ? "text-white" : "text-[#1A1D26]"
+          }`}
+        >
           {message.content}
         </Text>
       </View>
@@ -139,31 +143,31 @@ export default function AssistantScreen() {
   );
 
   return (
-    <SafeAreaView className="flex-1 bg-brand-bg" edges={["top"]}>
+    <SafeAreaView className="flex-1 bg-[#F6F5F1]" edges={["top"]}>
       <View className="px-5 pb-4 pt-3">
         <View className="flex-row items-center justify-between">
           <View>
             <Text className="text-xs font-semibold uppercase tracking-[2px] text-brand-blue">
               YOUR MONEY, IN FOCUS
             </Text>
-            <Text className="mt-1 text-2xl font-bold text-brand-text-primary">
+            <Text className="mt-1 text-2xl font-bold text-[#1A1D26]">
               Assistant
             </Text>
           </View>
-          <View className="h-11 w-11 items-center justify-center rounded-2xl border border-brand-surface-border bg-brand-surface">
-            <Feather name="zap" size={19} color="#70AFFF" />
+          <View className="h-11 w-11 items-center justify-center rounded-2xl border border-[#E7E5DE] bg-white">
+            <Feather name="zap" size={19} color="#1A85FF" />
           </View>
         </View>
 
         <View className="mt-4 flex-row items-center rounded-2xl border border-brand-blue/20 bg-brand-blue/10 px-4 py-3">
           <View className="mr-3 h-9 w-9 items-center justify-center rounded-xl bg-brand-blue/15">
-            <Feather name="shield" size={16} color="#70AFFF" />
+            <Feather name="shield" size={16} color="#1A85FF" />
           </View>
           <View className="min-w-0 flex-1">
-            <Text className="text-xs font-semibold text-brand-text-primary">
+            <Text className="text-xs font-semibold text-[#1A1D26]">
               Your personal finance guide
             </Text>
-            <Text className="mt-1 text-[11px] leading-4 text-brand-text-secondary">
+            <Text className="mt-1 text-[11px] leading-4 text-[#5C5F68]">
               Ask about spending and budgets from your recent activity.
             </Text>
           </View>
@@ -194,9 +198,9 @@ export default function AssistantScreen() {
           }
           ListFooterComponent={
             sending ? (
-              <View className="mb-4 self-start flex-row items-center gap-2 rounded-2xl rounded-bl-md border border-brand-surface-border bg-brand-surface px-4 py-3">
-                <ActivityIndicator size="small" color="#70AFFF" />
-                <Text className="text-xs text-brand-text-secondary">
+              <View className="mb-4 self-start flex-row items-center gap-2 rounded-2xl rounded-bl-md border border-[#E7E5DE] bg-white px-4 py-3">
+                <ActivityIndicator size="small" color="#1A85FF" />
+                <Text className="text-xs text-[#5C5F68]">
                   Looking at your finances…
                 </Text>
               </View>
@@ -205,7 +209,7 @@ export default function AssistantScreen() {
           ListEmptyComponent={
             <View className="flex-1 items-center justify-center">
               <Feather name="message-circle" size={24} color="#5C5F68" />
-              <Text className="mt-3 text-sm text-brand-text-secondary">
+              <Text className="mt-3 text-sm text-[#5C5F68]">
                 Start a conversation
               </Text>
             </View>
@@ -214,7 +218,7 @@ export default function AssistantScreen() {
 
         {messages.length <= 1 ? (
           <View className="px-5 pb-3">
-            <Text className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-brand-text-muted">
+            <Text className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-[#8A8D96]">
               TRY ASKING
             </Text>
             <View className="gap-2">
@@ -224,12 +228,12 @@ export default function AssistantScreen() {
                   accessibilityRole="button"
                   disabled={sending}
                   onPress={() => void sendMessage(prompt)}
-                  className="flex-row items-center rounded-xl border border-brand-surface-border bg-brand-surface px-3.5 py-3 active:bg-[#202532]"
+                  className="flex-row items-center rounded-xl border border-[#E7E5DE] bg-white px-3.5 py-3 active:bg-[#F2F5F9]"
                 >
                   <View className="mr-3 h-8 w-8 items-center justify-center rounded-lg bg-brand-blue/10">
-                    <Feather name={icon} size={15} color="#70AFFF" />
+                    <Feather name={icon} size={15} color="#1A85FF" />
                   </View>
-                  <Text className="flex-1 text-xs font-medium text-brand-text-primary">
+                  <Text className="flex-1 text-xs font-medium text-[#1A1D26]">
                     {label}
                   </Text>
                   <Feather name="arrow-up-left" size={15} color="#5C5F68" />
@@ -240,17 +244,17 @@ export default function AssistantScreen() {
         ) : null}
 
         <View
-          className="flex-row items-end gap-2 border-t border-brand-surface-border bg-brand-bg px-4 pt-3"
+          className="flex-row items-end gap-2 border-t border-[#E7E5DE] bg-[#F6F5F1] px-4 pt-3"
           style={{ paddingBottom: 12 }}
         >
-          <View className="min-h-12 flex-1 flex-row items-center rounded-2xl border border-brand-surface-border bg-brand-surface px-4">
+          <View className="min-h-12 flex-1 flex-row items-center rounded-2xl border border-[#E7E5DE] bg-white px-4">
             <TextInput
               value={input}
               onChangeText={setInput}
               placeholder="Ask about your money..."
-              placeholderTextColor="#747985"
+              placeholderTextColor="#8A8D96"
               editable={!sending}
-              className="max-h-28 min-h-12 flex-1 py-3 text-sm text-brand-text-primary"
+              className="max-h-28 min-h-12 flex-1 py-3 text-sm text-[#1A1D26]"
               multiline
               onSubmitEditing={() => void sendMessage(input)}
               returnKeyType="send"

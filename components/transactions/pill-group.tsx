@@ -22,8 +22,8 @@ export function PillGroup<T extends string>({
             }`}
             onPress={() => onChange(option.key)}
             style={{
-              backgroundColor: selected ? `${accentColor}18` : "#141822",
-              borderColor: selected ? `${accentColor}80` : "#232838",
+              backgroundColor: selected ? `${accentColor}18` : "#FFFFFF",
+              borderColor: selected ? `${accentColor}80` : "#E7E5DE",
             }}
           >
             {option.icon ? (
@@ -33,15 +33,15 @@ export function PillGroup<T extends string>({
               <Text
                 className={`text-xs font-medium ${
                   selected
-                    ? "text-brand-text-primary"
-                    : "text-brand-text-secondary"
+                    ? "text-[#1A1D26]"
+                    : "text-[#5C5F68]"
                 }`}
                 numberOfLines={1}
               >
                 {option.label}
               </Text>
               {option.detail ? (
-                <Text className="mt-1 text-[10px] text-brand-text-secondary">
+                <Text className="mt-1 text-[10px] text-[#5C5F68]">
                   {option.detail}
                 </Text>
               ) : null}
