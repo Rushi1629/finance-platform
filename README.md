@@ -1,6 +1,6 @@
-# Welth
+# Wealth
 
-Welth is a personal finance app for tracking spending, organizing accounts, and keeping budgets in view. It is built with Expo and React Native for Android, iOS, and web.
+Wealth is a personal finance app for tracking spending, organizing accounts, and keeping budgets in view. It is built with Expo and React Native for Android, iOS, and web.
 
 ## Features
 

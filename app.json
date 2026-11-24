@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "finance-platform",
+    "name": "Wealth",
     "slug": "finance-platform",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/wealth-app-icon.png",
     "scheme": "financeplatform",
@@ -51,13 +51,13 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Allow finance-platform to scan transaction receipts."
+          "cameraPermission": "Allow Wealth to scan transaction receipts."
         }
       ],
       [
         "expo-audio",
         {
-          "microphonePermission": "Allow finance-platform to record voice transactions."
+          "microphonePermission": "Allow Wealth to record voice transactions."
         }
       ],
       "expo-status-bar",

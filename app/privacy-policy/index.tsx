@@ -3,6 +3,7 @@ import Head from "expo-router/head";
 const APP_NAME = "Wealth";
 const COMPANY_NAME = "Wealth";
 const SUPPORT_EMAIL = "rushikeshbhor1629@gmail.com";
+const DEVELOPER_NAME = "Rushikesh Bhor";
 const EFFECTIVE_DATE = "19 November 2026";
 const LAST_UPDATED = "19 November 2026";
 
@@ -160,7 +161,7 @@ export default function PrivacyPolicyPage() {
 
             <section>
               <h2 className="mb-2 text-lg font-semibold text-gray-900">
-                8. Children's Privacy
+                8. Children&apos;s Privacy
               </h2>
               <p>
                 Our application is not intended for children unless expressly
@@ -207,10 +208,14 @@ export default function PrivacyPolicyPage() {
                   <strong>Application:</strong> {APP_NAME}
                 </p>
                 <p>
-                  <strong>Owner:</strong> {COMPANY_NAME}
+                  <strong>Developer / Owner:</strong> {DEVELOPER_NAME},{" "}
+                  {COMPANY_NAME}
                 </p>
                 <p>
-                  <strong>Email:</strong>{" "}
+                  <strong>Grievance Officer:</strong> {DEVELOPER_NAME}
+                </p>
+                <p>
+                  <strong>Developer and Grievance Officer Email:</strong>{" "}
                   <a
                     href={`mailto:${SUPPORT_EMAIL}`}
                     className="text-blue-600 underline"
